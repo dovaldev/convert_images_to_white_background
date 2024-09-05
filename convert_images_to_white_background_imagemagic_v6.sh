@@ -42,7 +42,7 @@ eval "find . -type f -iname \"*.jpg\" $omit_paths" | while read -r img; do
         echo -n "] $progress% ($processed/$total_images) - Processing $img\r"
 
         # Convert the image and add a white background, replace the original file
-        magick "$img" -background white -alpha remove -alpha off "$img" 2>>error.log
+        convert "$img" -background white -alpha remove -alpha off "$img" 2>>error.log
         if [ $? -eq 0 ]; then
             converted_images=$((converted_images + 1))
             echo "Image converted: ${img#./}"
